@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        githubPush() // Tells Jenkins to listen for the GitHub webhook ping
+        githubPush() // Listens for your working GitHub webhook trigger
     }
     stages {
         stage('Checkout Code') {
@@ -12,8 +12,8 @@ pipeline {
         stage('Build/Validate') {
             steps {
                 echo '🛠️ Validating HTML files...'
-                // Simple Windows command to check if our index file exists
-                dir index.html
+                // 'sh' executes native Linux commands inside your Jenkins container
+                sh 'ls -la index.html' 
             }
         }
     }
